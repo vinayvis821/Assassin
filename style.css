@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Rubik", sans-serif;
+  /* border: 1px solid red; */
+}
+
+/* scroll lock on page */
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: aliceblue;
+}
+
+/* header and nav bar styles */
+
+.header-container {
+  width: 100%;
+  background-color: dodgerblue;
+  margin-bottom: 0;
+}
+
+.header {
+  font-size: 700;
+  text-align: center;
+  color: #ffd301;
+}
+
+.header h1 {
+  margin-bottom: 0;
+}
+
+.nav-container {
+  width: 100%;
+  background-color: #ffd301;
+  border-bottom: 1px solid black;
+  margin-bottom: 40px;
+}
+
+.nav {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: weight;
+  margin-left: 10px;
+  color: dodgerblue;
+}
+
+.nav-container p {
+  margin: 0;
+  padding: 0;
+}
+
+.nav a {
+  text-align: center;
+  margin-left: 10px !important;
+  margin-bottom: 0;
+  font-size: 30;
+  text-decoration: none;
+  color: dodgerblue;
+  transition: ease 0.5s;
+}
+
+.nav a:visited {
+  color: dodgerblue;
+}
+
+.nav a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* login styles */
+
+.login-container {
+  max-width: 40% !important;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-height: 400px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#login-username {
+  margin-bottom: 20px;
+}
+
+.logged-in-container {
+  max-width: 40% !important;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-height: 400px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#logged-in-username {
+  margin-bottom: 20px;
+}
+
+/* Rules and about styles */
+
+.rules-container {
+  background-color: white;
+  max-width: 40% !important;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-height: 600px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.rules li {
+  text-align: left;
+}
+
+.about-container {
+  background-color: white;
+  max-width: 40% !important;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-height: 600px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.other {
+  color: dodgerblue;
+}
+
+/* Logged in styles */
+#logged-in {
+  display: none;
+}
+
+#logged-in-admin {
+  display: none;
+}

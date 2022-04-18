@@ -1,2 +1,7 @@
 # Assassin
-Host an assassin game for everyone to anonymously view their own targets 
+
+Using this website, users can host and manage their own assassin games. This was designed to host a game for my Raas club inaugural Assassin game.
+
+### Technologies used
+
+- The LAMP stack was employed (along with HTML, CSS, and Javascript for front end)
