@@ -5,3 +5,10 @@ Using this website, users can host and manage their own assassin games. This was
 ### Technologies used
 
 - The LAMP stack was employed (along with HTML, CSS, and Javascript for front end)
+
+## To do:
+
+- Add passwords for users (password hash)
+- Update read me
+- Update styling
+- More testing
