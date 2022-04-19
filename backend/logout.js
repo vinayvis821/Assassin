@@ -1,6 +1,6 @@
 function logOut(e) {
   console.log("logged out");
-  fetch("logout.php")
+  fetch("./backend/logout.php")
     .then((response) => response.json())
     .then((data) => {
       data = JSON.stringify(data);
@@ -8,6 +8,17 @@ function logOut(e) {
       if (data.success) {
         document.getElementById("log-in").style.display = "block";
         document.getElementById("logged-in").style.display = "none";
+        document.getElementById("list-of-games-container").style.display =
+          "none";
+        document.getElementById("create-user-container").style.display =
+          "block";
+        while (document.getElementById("list-of-games-list").firstChild) {
+          document
+            .getElementById("list-of-games-list")
+            .removeChild(
+              document.getElementById("list-of-games-list").firstChild
+            );
+        }
       }
     })
     .catch((err) => console.error(err));

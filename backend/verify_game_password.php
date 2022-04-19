@@ -6,35 +6,31 @@
     $json_str = file_get_contents('php://input');
     $json_obj = json_decode($json_str, true);
 
-    $password_guess = $json_obj['password'];
+    $game_id = $json_obj['game_id'];
+    $game_id = htmlentities($game_id);
+    $password_guess = $json_obj['password_guess'];
     $password_guess = htmlentities($password_guess);
     require "./database.php";
 
-    $stmt = $mysqli->prepare("SELECT password FROM admin");
+    $stmt = $mysqli->prepare("SELECT password FROM game WHERE game_id = $game_id");
     if(!$stmt){
         printf("Query Prep Failed: %s\n", $mysqli->error);
         exit;
     }
 
     $stmt->execute();
-    $stmt->bind_result($password);
-    $stmt->fetch();
-
-    if( $password == $password_guess ) {
-        ini_set("session.cookie_httponly", 1);
-        session_start();
-        $_SESSION['username'] = "admin";
-        $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32)); 
+    $result = $stmt->get_result();
+    $result = $result->fetch_assoc();
+    if( $result["password"] == $password_guess ) {
         echo json_encode(array(
             "success" => true,
-            "token" => $_SESSION["token"],
         ));
         exit;
-    } else {
+    }else {
         echo json_encode(array(
             "success" => false,
-            "message" => "Incorrect admin password"
         ));
+        exit;
     }
 
 ?>

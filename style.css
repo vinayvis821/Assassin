@@ -90,10 +90,11 @@ body {
 
 #login-username {
   margin-bottom: 20px;
+  padding-left: 3px;
 }
 
 .logged-in-container {
-  max-width: 40% !important;
+  max-width: 60% !important;
   margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
@@ -106,6 +107,28 @@ body {
 
 #logged-in-username {
   margin-bottom: 20px;
+}
+
+#create-user-container {
+  max-width: 40% !important;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-height: 400px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#create-name {
+  margin-bottom: 5px;
+  padding-left: 3px;
+}
+
+#create-username {
+  margin-bottom: 10px;
+  padding-left: 3px;
 }
 
 /* Rules and about styles */
@@ -151,4 +174,45 @@ body {
 
 #logged-in-admin {
   display: none;
+}
+
+/* List of games styles */
+
+#list-of-games-container {
+  display: none;
+  background-color: white;
+  max-width: 40% !important;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-height: 600px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.game-list-item {
+  transition: ease 1s;
+}
+
+.game-list-item:hover {
+  cursor: pointer;
+  color: dodgerblue;
+}
+
+/* Join game styles */
+
+#join-game-container {
+  display: none;
+  background-color: white;
+  max-width: 40% !important;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-height: 600px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
 }

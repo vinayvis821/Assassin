@@ -26,10 +26,35 @@
     <div class="container" id="log-in">
         <div class="row">
             <div class="col-sm login-container">
-                <h2>Log In!</h2>
+                <h2>Log In</h2>
                 <input type="text" id="login-username" placeholder="Username" required>
                 <br>
                 <button type="submit" id="login-button" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="create-user-container">
+        <div class="row">
+            <div class="col-sm create-user">
+                <h2>Create User</h2>
+                <input type="text" id="create-name" placeholder="Name" required>
+                <br>
+                <input type="text" id="create-username" placeholder="Username" required>
+                <br>
+                <button type="submit" id="create-button" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="join-game-container">
+        <div class="row">
+            <div class="col-sm join-game">
+                <h2>Join Game</h2>
+                <h3 id="join-game-name">Game</h3>
+                <p>You are only allowed to join one game, joining this game will forfeit you from your current game<p>
+                <button type="submit" id="cancel-join-game-button" class="btn btn-primary">Cancel</button>
+                <button type="submit" id="join-game-button" class="btn btn-danger">Join</button>
             </div>
         </div>
     </div>
@@ -38,6 +63,8 @@
         <div class="row">
             <div class="col-sm logged-in-container">
                 <h2 id="logged-in-username">Hi, </h2>
+                <p id="logged-in-game">Current game:</p>
+                <span id="logged-in-game_id"></span>
                 <p id="logged-in-target">Your target is: <p>
                 <p id="logged-in-round">You have until: </p>
                 <button type="submit" id="logout-button" class="btn btn-primary">Log out</button>
@@ -48,21 +75,37 @@
     <div class="container" id="logged-in-admin">
         <div class="row">
             <div class="col-sm logged-in-container">
-                <h2>Hi, admin</h2>
                 <p>Admin console <p>
                 <button type="submit" id="logout-button-admin" class="btn btn-primary">Log out</button>
             </div>
         </div>
     </div>
 
+
+    <div class="container" id="list-of-games-container">
+        <div class="row">
+            <div class="col-sm list-of-games">
+                <h2 id="list-of-games-title">Other Active Games:</h2>
+                <div id="list-of-games-list"></div>
+            </div>
+        </div>
+    </div>
+
     <script src="./backend/login.js"></script>
     <script src="./backend/logout.js"></script>
+    <script src="./backend/create_user.js"></script>
+    <script src="./backend/join.js"></script>
 
     <!-- Event Listeners -->
     <script>   
         document.getElementById("login-button").addEventListener("click" , logIn );
         document.getElementById("logout-button").addEventListener("click" , logOut );
         document.getElementById("logout-button-admin").addEventListener("click" , logOut );
+        document.getElementById("create-button").addEventListener("click" , createUser );
+        document.getElementById("join-game-button").addEventListener("click", joinGame);
+        document.getElementById("cancel-join-game-button").addEventListener("click", cancelJoinGame);
+
+
     </script>
 </body>
 </html>
