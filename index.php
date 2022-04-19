@@ -29,7 +29,9 @@
                 <h2>Log In</h2>
                 <input type="text" id="login-username" placeholder="Username" required>
                 <br>
-                <button type="submit" id="login-button" class="btn btn-primary">Submit</button>
+                <button type="submit" id="login-button" class="btn btn-primary">Log In</button>
+                <br>
+                <button type="submit" id="login-button-admin" class="btn btn-primary">Admin</button>
             </div>
         </div>
     </div>
@@ -74,9 +76,37 @@
 
     <div class="container" id="logged-in-admin">
         <div class="row">
-            <div class="col-sm logged-in-container">
-                <p>Admin console <p>
+            <div class="col-sm logged-in-container-admin">
+                <h2>Admin console <h2>
+                <div class="col-sm list-of-games-admin">
+                    <h4 id="list-of-games-title-admin">Click any game to manage it:</h4>
+                    <div id="list-of-games-list-admin"></div>
+                </div>
                 <button type="submit" id="logout-button-admin" class="btn btn-primary">Log out</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="manage-game-container">
+        <div class="row">
+            <div class="col-sm logged-in">
+                <h2 id="manage-game-name">Game: <h2>
+                <div id="manage-game-list-of-players"></div>
+                <button type="submit" id="assign-targets-admin" class="btn btn-danger">Assign Targets</button>
+                <button type="submit" id="eliminate-targets-admin" class="btn btn-danger">Eliminate Players</button>
+                <button type="submit" id="back-button-admin" class="btn btn-secondary">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="manage-user-container">
+        <div class="row">
+            <div class="col-sm logged-in">
+                <h2 id="manage-user-name">User: <h2>
+                <p id="eliminated">Eliminated: </p>
+                <button type="submit" id="eliminate-user-admin" class="btn btn-primary">Eliminate User</button>
+                <button type="submit" id="delete-user-admin" class="btn btn-danger">Delete User</button>
+                <button type="submit" id="back-button-user-admin" class="btn btn-secondary">Back</button>
             </div>
         </div>
     </div>
@@ -91,20 +121,29 @@
         </div>
     </div>
 
+    <!-- Javascript imports -->
+
     <script src="./backend/login.js"></script>
     <script src="./backend/logout.js"></script>
     <script src="./backend/create_user.js"></script>
     <script src="./backend/join.js"></script>
+    <script src="./backend/admin.js"></script>
 
     <!-- Event Listeners -->
     <script>   
         document.getElementById("login-button").addEventListener("click" , logIn );
         document.getElementById("logout-button").addEventListener("click" , logOut );
+        document.getElementById("login-button-admin").addEventListener("click", logInAdmin);
         document.getElementById("logout-button-admin").addEventListener("click" , logOut );
         document.getElementById("create-button").addEventListener("click" , createUser );
         document.getElementById("join-game-button").addEventListener("click", joinGame);
         document.getElementById("cancel-join-game-button").addEventListener("click", cancelJoinGame);
-
+        document.getElementById("back-button-admin").addEventListener("click", backButtonAdmin);
+        document.getElementById("back-button-user-admin").addEventListener("click", backButtonUserAdmin);
+        document.getElementById("delete-user-admin").addEventListener("click", deleteUser);
+        document.getElementById("eliminate-user-admin").addEventListener("click", eliminateUser);
+        document.getElementById("assign-targets-admin").addEventListener("click", assignTargets );
+        document.getElementById("eliminate-targets-admin").addEventListener("click", eliminateUsers);
 
     </script>
 </body>

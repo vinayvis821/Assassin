@@ -27,11 +27,7 @@ function refresh() {
 function logIn() {
   const username = document.getElementById("login-username").value;
   document.getElementById("login-username").value = "";
-  if (username === "admin") {
-    logInAdmin();
-  } else {
-    logInUser(username);
-  }
+  logInUser(username);
 }
 
 function logInUser(username) {
@@ -135,33 +131,4 @@ function clickGame(event) {
   document.getElementById("logged-in").style.display = "none";
   document.getElementById("create-user-container").style.display = "none";
   document.getElementById("list-of-games-container").style.display = "none";
-}
-
-function logInAdmin() {
-  let password = prompt("Please enter the admin password");
-  const data = { password: password };
-
-  fetch("./backend/get_admin.php", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: { "content-type": "application/json" },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      data = JSON.stringify(data);
-      data = JSON.parse(data);
-      console.log(data);
-      if (data.success) {
-        displayAdmin();
-      } else {
-        alert("Admin password is inccorect");
-      }
-    })
-    .catch((err) => console.error(err));
-}
-
-function displayAdmin() {
-  document.getElementById("log-in").style.display = "none";
-  document.getElementById("logged-in-admin").style.display = "block";
-  document.getElementById("create-user-container").style.display = "none";
 }

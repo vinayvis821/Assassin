@@ -35,6 +35,10 @@ body {
   margin-bottom: 0;
 }
 
+.header:hover {
+  cursor: default;
+}
+
 .nav-container {
   width: 100%;
   background-color: #ffd301;
@@ -75,6 +79,10 @@ body {
 }
 
 /* login styles */
+
+#login-button {
+  margin-bottom: 5px;
+}
 
 .login-container {
   max-width: 40% !important;
@@ -144,6 +152,7 @@ body {
   border: 1px solid black;
   border-radius: 10px;
   padding: 20px;
+  overflow-y: scroll;
 }
 
 .rules li {
@@ -161,6 +170,7 @@ body {
   border: 1px solid black;
   border-radius: 10px;
   padding: 20px;
+  overflow-y: scroll;
 }
 
 .other {
@@ -173,6 +183,10 @@ body {
 }
 
 #logged-in-admin {
+  display: none;
+}
+
+#manage-game-container {
   display: none;
 }
 
@@ -212,6 +226,59 @@ body {
   margin-right: auto;
   text-align: center;
   max-height: 600px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+/* Admin console styles */
+
+.logged-in-container-admin {
+  max-width: 70% !important;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-height: 400px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+#manage-game-container {
+  max-width: 70% !important;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-height: 400px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+.manage-game-player {
+  text-align: left !important;
+  font-size: medium;
+  margin-left: 5px;
+  transition: ease 0.5s;
+}
+
+.manage-game-player:hover {
+  cursor: pointer;
+  color: dodgerblue;
+}
+
+#manage-user-container {
+  display: none;
+  max-width: 70% !important;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-height: 400px;
   border: 1px solid black;
   border-radius: 10px;
   padding: 20px;

@@ -11,6 +11,7 @@ function logOut(e) {
           "none";
         document.getElementById("create-user-container").style.display =
           "block";
+        document.getElementById("logged-in-admin").style.display = "none";
         document.getElementById("logged-in-username").removeAttribute("class");
         document.getElementById("logged-in-game_id").removeAttribute("class");
         document.getElementById("logged-in-game").removeAttribute("class");
