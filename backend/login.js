@@ -32,7 +32,6 @@ function logIn() {
   } else {
     logInUser(username);
   }
-  console.log(username);
 }
 
 function logInUser(username) {
@@ -47,7 +46,6 @@ function logInUser(username) {
     .then((data) => {
       data = JSON.stringify(data);
       data = JSON.parse(data);
-      console.log(data);
       if (data.success) {
         displayUser(data.user);
       } else {
@@ -68,15 +66,15 @@ function displayUser(user) {
 }
 
 function displayCurrentGame(user) {
+  document
+    .getElementById("logged-in-game_id")
+    .setAttribute("class", user.game_id);
+  document
+    .getElementById("logged-in-username")
+    .setAttribute("class", user.username);
   if (user.game_id !== null) {
     document.getElementById("logged-in-username").innerHTML =
       "Hi, " + user.name;
-    document
-      .getElementById("logged-in-game_id")
-      .setAttribute("class", user.game_id);
-    document
-      .getElementById("logged-in-username")
-      .setAttribute("class", user.username);
     document.getElementById("logged-in-game").innerHTML =
       "Current game: " + user.current;
     document.getElementById("logged-in-target").innerHTML =
@@ -85,6 +83,7 @@ function displayCurrentGame(user) {
       "You have 3 days from the start of the round to eliminate your target, or you will be eliminated";
   } else {
     document.getElementById("logged-in-username").innerHTML = "No current game";
+    document.getElementById("logged-in-game").innerHTML = "";
     document.getElementById("logged-in-target").innerHTML =
       "Join a game to be assigned a target. You are only allowed to be on one game at a time.";
     document.getElementById("logged-in-round").innerHTML = "";

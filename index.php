@@ -85,7 +85,7 @@
     <div class="container" id="list-of-games-container">
         <div class="row">
             <div class="col-sm list-of-games">
-                <h2 id="list-of-games-title">Other Active Games:</h2>
+                <h2 id="list-of-games-title">All Other Active Games:</h2>
                 <div id="list-of-games-list"></div>
             </div>
         </div>

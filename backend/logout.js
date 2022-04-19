@@ -1,5 +1,4 @@
 function logOut(e) {
-  console.log("logged out");
   fetch("./backend/logout.php")
     .then((response) => response.json())
     .then((data) => {
@@ -12,6 +11,9 @@ function logOut(e) {
           "none";
         document.getElementById("create-user-container").style.display =
           "block";
+        document.getElementById("logged-in-username").removeAttribute("class");
+        document.getElementById("logged-in-game_id").removeAttribute("class");
+        document.getElementById("logged-in-game").removeAttribute("class");
         while (document.getElementById("list-of-games-list").firstChild) {
           document
             .getElementById("list-of-games-list")

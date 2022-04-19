@@ -31,7 +31,7 @@
     }
     $stmt->close();
 
-    $stmt = $mysqli->prepare("INSERT INTO players (name, username, target, eliminated) values ('$name_entry', '$username_entry', 'None', 'no')");
+    $stmt = $mysqli->prepare("INSERT INTO players (name, username, current, target, eliminated) values ('$name_entry', '$username_entry', 'None', 'None', 'no')");
     if(!$stmt){
         printf("Query Prep Failed: %s\n", $mysqli->error);
         exit;
