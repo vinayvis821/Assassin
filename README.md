@@ -9,6 +9,8 @@ Using this website, users can host and manage their own assassin games. This was
 ## To do:
 
 - Add passwords for users (password hash)
+- Add active player board
+- Cross off elimated players in admin console (add real name)
 - Update read me
 - Update styling
 - More testing
