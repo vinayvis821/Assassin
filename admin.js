@@ -50,6 +50,7 @@ function displayAdmin() {
   document.getElementById("log-in").style.display = "none";
   document.getElementById("logged-in-admin").style.display = "block";
   document.getElementById("create-user-container").style.display = "none";
+  document.getElementById("manage-game-container").style.display = "none";
   displayAdminActiveGames();
 }
 
@@ -154,7 +155,7 @@ function updateAdminGame(gameName) {
       for (let i = 0; i < data.users.length; i++) {
         let user = document.createElement("p");
         user.innerHTML = data.users[i].username + ": " + data.users[i].name;
-        console.log(user);
+
         user.setAttribute("id", data.users[i].username);
         user.addEventListener("click", clickAdminManageUser);
         user.setAttribute(
@@ -251,14 +252,13 @@ function assignTargets() {
       data = JSON.parse(data);
 
       if (data.success) {
-        updatePlayerTargets(data.users);
+        updatePlayerTargets(data.users, game_name);
       }
-      alert("Players have been randomnly assigned targets");
     })
     .catch((err) => console.error(err));
 }
 
-function updatePlayerTargets(users) {
+function updatePlayerTargets(users, game_name) {
   let playerList = [];
   for (let i = 0; i < users.length; i++) {
     if (users[i].eliminated == "no") {
@@ -270,6 +270,20 @@ function updatePlayerTargets(users) {
   if (len < 2) {
     alert("Not enough players to assign targets. Minimum amount needed: 2");
   } else {
+    // Set game start to yes
+    const start = { name: game_name };
+    fetch("./backend/start_game.php", {
+      method: "POST",
+      body: JSON.stringify(start),
+      headers: { "content-type": "application/json" },
+    })
+      .then((response) => response.json())
+      .then((start) => {
+        start = JSON.stringify(start);
+        start = JSON.parse(start);
+      })
+      .catch((err) => console.error(err));
+
     shuffle(playerList);
     for (let i = 0; i < len; i++) {
       let key = String(playerList[i]);
@@ -293,6 +307,7 @@ function updatePlayerTargets(users) {
         data = JSON.parse(data);
       })
       .catch((err) => console.error(err));
+    alert("Players have been randomnly assigned targets");
   }
 }
 
@@ -315,7 +330,7 @@ function eliminateUsers() {
       data = JSON.stringify(data);
       data = JSON.parse(data);
 
-      console.log(data.success);
+      updateAdminGame(gameName);
     })
     .catch((err) => console.error(err));
 }
@@ -379,6 +394,25 @@ function changePassword() {
       data = JSON.parse(data);
 
       console.log(data.success);
+    })
+    .catch((err) => console.error(err));
+}
+
+function endGame() {
+  let gameName = document.getElementById("game_name").getAttribute("class");
+
+  const data = { name: gameName };
+
+  fetch("./backend/end_game.php", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "content-type": "application/json" },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      data = JSON.stringify(data);
+      data = JSON.parse(data);
+      displayAdmin();
     })
     .catch((err) => console.error(err));
 }

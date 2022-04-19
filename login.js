@@ -47,7 +47,6 @@ function logInUser(username, password) {
       if (data.success) {
         displayUser(data.user);
       } else {
-        console.log(data);
         alert("Username does not exist or password is incorrect");
       }
     })
@@ -115,6 +114,36 @@ function displayCurrentGame(user) {
 }
 
 function displayActiveUsers(gameName) {
+  // check if game has started
+  let hasStarted = false;
+
+  const start = { name: gameName };
+  fetch("./backend/has_started.php", {
+    method: "POST",
+    body: JSON.stringify(start),
+    headers: { "content-type": "application/json" },
+  })
+    .then((response) => response.json())
+    .then((start) => {
+      start = JSON.stringify(start);
+      start = JSON.parse(start);
+
+      let p = document.createElement("p");
+      if (start.started == "yes") {
+        hasStarted = true;
+        p.innerHTML = "The game has started";
+      } else {
+        p.innerHTML = "The game has not yet started";
+      }
+      document
+        .getElementById("active-users-list")
+        .insertBefore(
+          p,
+          document.getElementById("active-users-list").firstChild
+        );
+    })
+    .catch((err) => console.error(err));
+
   document.getElementById("acive-users").innerHTML =
     "Active players in: " + gameName;
 
@@ -134,10 +163,33 @@ function displayActiveUsers(gameName) {
           .getElementById("active-users-list")
           .removeChild(document.getElementById("active-users-list").firstChild);
       }
+
+      let count = 0;
       for (let i = 0; i < data.users.length; i++) {
+        if (data.users[i].eliminated !== "yes") {
+          count++;
+          let p = document.createElement("p");
+          p.innerHTML = data.users[i].username + ": " + data.users[i].name;
+          document.getElementById("active-users-list").appendChild(p);
+        }
+      }
+
+      if (count == 1) {
         let p = document.createElement("p");
-        p.innerHTML = data.users[i].username + ": " + data.users[i].name;
-        document.getElementById("active-users-list").appendChild(p);
+        if (hasStarted) {
+          p.innerHTML = "The game is over, a player has won";
+        } else {
+          p.innerHTML = "The game has not currently started yet";
+        }
+        document
+          .getElementById("active-users-list")
+          .removeChild(document.getElementById("active-users-list").firstChild);
+        document
+          .getElementById("active-users-list")
+          .insertBefore(
+            p,
+            document.getElementById("active-users-list").firstChild
+          );
       }
     });
 }
@@ -146,8 +198,13 @@ function displayUserInfo(user, targetName) {
   document.getElementById("logged-in-username").innerHTML = "Hi, " + user.name;
   document.getElementById("logged-in-game").innerHTML =
     "Current game: " + user.current;
-  document.getElementById("logged-in-target").innerHTML =
-    "Your target is: " + targetName;
+  if (user.target_eliminated == "yes") {
+    document.getElementById("logged-in-target").innerHTML =
+      "Your target has been eliminated, good job";
+  } else {
+    document.getElementById("logged-in-target").innerHTML =
+      "Your target is: " + targetName;
+  }
   document.getElementById("logged-in-round").innerHTML =
     "You have 3 days from the start of the round to eliminate your target, or you will be eliminated";
   displayActiveUsers(user.current);

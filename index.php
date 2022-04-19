@@ -107,6 +107,8 @@
                 <button type="submit" id="assign-targets-admin" class="btn btn-danger">Assign Targets</button>
                 <button type="submit" id="eliminate-targets-admin" class="btn btn-danger">End of Round</button>
                 <button type="submit" id="back-button-admin" class="btn btn-secondary">Back</button>
+                <br>
+                <button type="submit" id="end-game-admin" class="btn btn-danger">End Game</button>
             </div>
         </div>
     </div>
@@ -158,6 +160,7 @@
         document.getElementById("eliminate-targets-admin").addEventListener("click", eliminateUsers);
         document.getElementById("change-room-password").addEventListener("click", changePassword);
         document.getElementById("add-game-button-admin").addEventListener("click", addGame);
+        document.getElementById("end-game-admin").addEventListener("click", endGame );
     </script>
 </body>
 </html>

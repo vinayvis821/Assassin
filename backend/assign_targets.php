@@ -22,6 +22,14 @@
         }
         $stmt->execute();
         $stmt->close();
+
+        $stmt = $mysqli->prepare("UPDATE players SET target_eliminated = 'no' WHERE username = '$player'");
+        if(!$stmt){
+            printf("Query Prep Failed: %s\n", $mysqli->error);
+            exit;
+        }
+        $stmt->execute();
+        $stmt->close();
     }
  
     echo json_encode(array(

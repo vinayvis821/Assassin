@@ -325,3 +325,7 @@ body {
 .strikethrough {
   text-decoration: line-through;
 }
+
+#end-game-admin {
+  margin-top: 5px;
+}
