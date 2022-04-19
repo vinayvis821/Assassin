@@ -143,7 +143,7 @@ body {
 
 .rules-container {
   background-color: white;
-  max-width: 40% !important;
+  max-width: 60% !important;
   margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
@@ -161,7 +161,7 @@ body {
 
 .about-container {
   background-color: white;
-  max-width: 40% !important;
+  max-width: 60% !important;
   margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
@@ -264,6 +264,10 @@ body {
   font-size: medium;
   margin-left: 5px;
   transition: ease 0.5s;
+}
+
+#change-room-password {
+  margin-bottom: 10px;
 }
 
 .manage-game-player:hover {

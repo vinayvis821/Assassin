@@ -265,3 +265,24 @@ function backButtonAdmin() {
   document.getElementById("manage-game-container").style.display = "none";
   document.getElementById("logged-in-admin").style.display = "block";
 }
+
+function changePassword() {
+  let game_name = document.getElementById("game_name").getAttribute("class");
+
+  let new_password = prompt("Enter a new password for game: " + game_name);
+  const data = { new_password, new_password, game_name: game_name };
+
+  fetch("./backend/change_password.php", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "content-type": "application/json" },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      data = JSON.stringify(data);
+      data = JSON.parse(data);
+
+      console.log(data.success);
+    })
+    .catch((err) => console.error(err));
+}

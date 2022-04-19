@@ -28,7 +28,7 @@
             <div class="col-sm about-container" id="login">
                 <h2>About</h2>
                 <p>Assassin is a game about eliminating assigned targets for the goal of being the last remaining player.</p>
-                <p class="other">This assassin game manager allows players to create accounts and join a game hosted by a game master. Players can see there targets after logging in. The admin (gamemaster) can view and manage players and their targets. The admin can mark players as eliminated, and assign round time length.</p>
+                <p class="other">This assassin game manager allows players to create accounts and join a game hosted by a game master. Players can see there targets after logging in. The admin (gamemaster) can view and manage players and randomnly assign their targets. The admin can mark players as eliminated, as well as eliminate all players who failed to eliminate their target by the end of the round. The admin can also delete users, but is not allowed to see their targets.</p>
                 <p>This website was created by Vinay Viswanathan. This website uses the LAMP stack as well as Javascript.</p>
             </div>
         </div>

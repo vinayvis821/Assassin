@@ -93,8 +93,10 @@
                 <h2 id="manage-game-name">Game: <h2>
                 <div id="manage-game-list-of-players"></div>
                 <p id="game_name"></p>
+                <button type="submit" id="change-room-password" class="btn btn-danger">Change Password</button>
+                <br>
                 <button type="submit" id="assign-targets-admin" class="btn btn-danger">Assign Targets</button>
-                <button type="submit" id="eliminate-targets-admin" class="btn btn-danger">Eliminate Players</button>
+                <button type="submit" id="eliminate-targets-admin" class="btn btn-danger">End of Round</button>
                 <button type="submit" id="back-button-admin" class="btn btn-secondary">Back</button>
             </div>
         </div>
@@ -145,7 +147,7 @@
         document.getElementById("eliminate-user-admin").addEventListener("click", eliminateUser);
         document.getElementById("assign-targets-admin").addEventListener("click", assignTargets );
         document.getElementById("eliminate-targets-admin").addEventListener("click", eliminateUsers);
-
+        document.getElementById("change-room-password").addEventListener("click", changePassword);
     </script>
 </body>
 </html>
