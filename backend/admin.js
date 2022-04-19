@@ -76,7 +76,7 @@ function displayAdminActiveGames() {
         game.innerHTML = data.games[i].game_name;
         game.setAttribute("id", data.games[i].game_id);
         game.addEventListener("click", clickAdminGame);
-        game.setAttribute("class", "game-list-item");
+        game.setAttribute("class", "manage-game-item");
         document.getElementById("list-of-games-list-admin").appendChild(game);
       }
     })
@@ -223,13 +223,70 @@ function eliminateUser() {
 }
 
 function assignTargets() {
-  console.log("Assigning targets");
+  let game_name = document.getElementById("game_name").getAttribute("class");
 
-  // TODO
+  const data = { name: game_name };
+
+  fetch("./backend/get_players.php", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "content-type": "application/json" },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      data = JSON.stringify(data);
+      data = JSON.parse(data);
+
+      if (data.success) {
+        updatePlayerTargets(data.users);
+      }
+    })
+    .catch((err) => console.error(err));
+}
+
+function updatePlayerTargets(users) {
+  let playerList = [];
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].eliminated == "no") {
+      playerList.push(users[i].username);
+    }
+  }
+  let player_targets = {};
+  let len = playerList.length;
+  if (len < 2) {
+    alert("Not enough players to assign targets. Minimum amount needed: 2");
+  } else {
+    shuffle(playerList);
+    for (let i = 0; i < len; i++) {
+      let key = String(playerList[i]);
+      if (i == len - 1) {
+        player_targets[key] = playerList[0];
+      } else {
+        player_targets[key] = playerList[i + 1];
+      }
+    }
+
+    const data = { assignments: player_targets };
+
+    fetch("./backend/assign_targets.php", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "content-type": "application/json" },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        data = JSON.stringify(data);
+        data = JSON.parse(data);
+      })
+      .catch((err) => console.error(err));
+  }
+}
+
+function shuffle(arr) {
+  arr.sort(() => Math.random() - 0.5);
 }
 
 function eliminateUsers() {
-  console.log("Eliminating Users who have not killed their target yet");
   let gameName = document.getElementById("game_name").getAttribute("class");
 
   const data = { name: gameName };
@@ -264,6 +321,31 @@ function backButtonAdmin() {
   }
   document.getElementById("manage-game-container").style.display = "none";
   document.getElementById("logged-in-admin").style.display = "block";
+}
+
+function addGame() {
+  let name = prompt("Enter a name for a game");
+  let password = prompt("Enter a password for: " + name);
+
+  const data = { name: name, password: password };
+
+  fetch("./backend/add_game.php", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "content-type": "application/json" },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      data = JSON.stringify(data);
+      data = JSON.parse(data);
+
+      if (data.success) {
+        displayAdminActiveGames();
+      } else {
+        alert("Game name already exists");
+      }
+    })
+    .catch((err) => console.error(err));
 }
 
 function changePassword() {

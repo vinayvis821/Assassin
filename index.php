@@ -82,6 +82,7 @@
                     <h4 id="list-of-games-title-admin">Click any game to manage it:</h4>
                     <div id="list-of-games-list-admin"></div>
                 </div>
+                <button type="submit" id="add-game-button-admin" class="btn btn-primary">Add Game</button>
                 <button type="submit" id="logout-button-admin" class="btn btn-primary">Log out</button>
             </div>
         </div>
@@ -148,6 +149,7 @@
         document.getElementById("assign-targets-admin").addEventListener("click", assignTargets );
         document.getElementById("eliminate-targets-admin").addEventListener("click", eliminateUsers);
         document.getElementById("change-room-password").addEventListener("click", changePassword);
+        document.getElementById("add-game-button-admin").addEventListener("click", addGame);
     </script>
 </body>
 </html>

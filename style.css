@@ -246,6 +246,18 @@ body {
   overflow-y: scroll;
 }
 
+.manage-game-item {
+  text-align: left !important;
+  font-size: large;
+  margin-left: 5px;
+  transition: ease 0.5s;
+}
+
+.manage-game-item:hover {
+  cursor: pointer;
+  color: dodgerblue;
+}
+
 #manage-game-container {
   max-width: 70% !important;
   margin-top: 100px;
@@ -259,9 +271,9 @@ body {
   overflow-y: scroll;
 }
 
-.manage-game-player {
+#manage-game-list-of-players > p {
   text-align: left !important;
-  font-size: medium;
+  font-size: large;
   margin-left: 5px;
   transition: ease 0.5s;
 }
@@ -270,7 +282,7 @@ body {
   margin-bottom: 10px;
 }
 
-.manage-game-player:hover {
+#manage-game-list-of-players > p:hover {
   cursor: pointer;
   color: dodgerblue;
 }

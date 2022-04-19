@@ -70,14 +70,20 @@ function displayCurrentGame(user) {
     .setAttribute("class", user.username);
   if (user.game_id !== null) {
     if (user.eliminated == "no") {
-      document.getElementById("logged-in-username").innerHTML =
-        "Hi, " + user.name;
-      document.getElementById("logged-in-game").innerHTML =
-        "Current game: " + user.current;
-      document.getElementById("logged-in-target").innerHTML =
-        "Your target is: " + user.target;
-      document.getElementById("logged-in-round").innerHTML =
-        "You have 3 days from the start of the round to eliminate your target, or you will be eliminated";
+      const data = { name: user.target };
+
+      fetch("./backend/get_name.php", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "content-type": "application/json" },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          data = JSON.stringify(data);
+          data = JSON.parse(data);
+          displayUserInfo(user, data.target_name);
+        })
+        .catch((err) => console.error(err));
     } else {
       document.getElementById("logged-in-username").innerHTML =
         "Hi, " + user.name;
@@ -95,6 +101,16 @@ function displayCurrentGame(user) {
       "Join a game to be assigned a target. You are only allowed to be on one game at a time.";
     document.getElementById("logged-in-round").innerHTML = "";
   }
+}
+
+function displayUserInfo(user, targetName) {
+  document.getElementById("logged-in-username").innerHTML = "Hi, " + user.name;
+  document.getElementById("logged-in-game").innerHTML =
+    "Current game: " + user.current;
+  document.getElementById("logged-in-target").innerHTML =
+    "Your target is: " + targetName;
+  document.getElementById("logged-in-round").innerHTML =
+    "You have 3 days from the start of the round to eliminate your target, or you will be eliminated";
 }
 
 function displayActiveGames() {
