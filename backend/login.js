@@ -69,14 +69,25 @@ function displayCurrentGame(user) {
     .getElementById("logged-in-username")
     .setAttribute("class", user.username);
   if (user.game_id !== null) {
-    document.getElementById("logged-in-username").innerHTML =
-      "Hi, " + user.name;
-    document.getElementById("logged-in-game").innerHTML =
-      "Current game: " + user.current;
-    document.getElementById("logged-in-target").innerHTML =
-      "Your target is: " + user.target;
-    document.getElementById("logged-in-round").innerHTML =
-      "You have 3 days from the start of the round to eliminate your target, or you will be eliminated";
+    if (user.eliminated == "no") {
+      document.getElementById("logged-in-username").innerHTML =
+        "Hi, " + user.name;
+      document.getElementById("logged-in-game").innerHTML =
+        "Current game: " + user.current;
+      document.getElementById("logged-in-target").innerHTML =
+        "Your target is: " + user.target;
+      document.getElementById("logged-in-round").innerHTML =
+        "You have 3 days from the start of the round to eliminate your target, or you will be eliminated";
+    } else {
+      document.getElementById("logged-in-username").innerHTML =
+        "Hi, " + user.name;
+      document.getElementById("logged-in-game").innerHTML =
+        "Current game: " + user.current;
+      document.getElementById("logged-in-target").innerHTML =
+        "You have been eliminated";
+      document.getElementById("logged-in-round").innerHTML =
+        "You are not allowed to eliminated anyone";
+    }
   } else {
     document.getElementById("logged-in-username").innerHTML = "No current game";
     document.getElementById("logged-in-game").innerHTML = "";

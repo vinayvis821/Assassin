@@ -85,6 +85,7 @@ function displayAdminActiveGames() {
 
 function clickAdminGame(event) {
   let gameName = event.target.innerHTML;
+  document.getElementById("game_name").setAttribute("class", gameName);
   document
     .getElementById("manage-game-list-of-players")
     .setAttribute("class", "manage-game-player");
@@ -127,6 +128,7 @@ function updateAdminGame(gameName) {
   document.getElementById("logged-in-admin").style.display = "none";
   document.getElementById("manage-game-name").innerHTML =
     "Manage players in game: " + gameName;
+  document.getElementById("game_name").setAttribute("class", gameName);
   const data = { name: gameName };
   while (document.getElementById("manage-game-list-of-players").firstChild) {
     document
@@ -222,10 +224,29 @@ function eliminateUser() {
 
 function assignTargets() {
   console.log("Assigning targets");
+
+  // TODO
 }
 
 function eliminateUsers() {
   console.log("Eliminating Users who have not killed their target yet");
+  let gameName = document.getElementById("game_name").getAttribute("class");
+
+  const data = { name: gameName };
+
+  fetch("./backend/eliminate_players.php", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "content-type": "application/json" },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      data = JSON.stringify(data);
+      data = JSON.parse(data);
+
+      console.log(data.success);
+    })
+    .catch((err) => console.error(err));
 }
 
 function backButtonUserAdmin() {

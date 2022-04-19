@@ -92,6 +92,7 @@
             <div class="col-sm logged-in">
                 <h2 id="manage-game-name">Game: <h2>
                 <div id="manage-game-list-of-players"></div>
+                <p id="game_name"></p>
                 <button type="submit" id="assign-targets-admin" class="btn btn-danger">Assign Targets</button>
                 <button type="submit" id="eliminate-targets-admin" class="btn btn-danger">Eliminate Players</button>
                 <button type="submit" id="back-button-admin" class="btn btn-secondary">Back</button>
