@@ -8,8 +8,10 @@
 
     $username_entry = $json_obj['username'];
     $name_entry = $json_obj['name'];
+    $password_entry = $json_obj['password'];
     $username_entry = htmlentities($username_entry);
     $name_entry = htmlentities($name_entry);
+    $password_entry = htmlentities($password_entry);
 
     require "./database.php";
 
@@ -31,7 +33,9 @@
     }
     $stmt->close();
 
-    $stmt = $mysqli->prepare("INSERT INTO players (name, username, current, target, eliminated) values ('$name_entry', '$username_entry', 'None', 'None', 'no')");
+    $password_hash = $mysqli->real_escape_string(password_hash(htmlentities($password_entry),PASSWORD_BCRYPT));
+
+    $stmt = $mysqli->prepare("INSERT INTO players (name, username, current, target, eliminated, password_hash) values ('$name_entry', '$username_entry', 'None', 'None', 'no', '$password_hash')");
     if(!$stmt){
         printf("Query Prep Failed: %s\n", $mysqli->error);
         exit;

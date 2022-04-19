@@ -1,10 +1,12 @@
 function createUser() {
   const name = document.getElementById("create-name").value;
   const username = document.getElementById("create-username").value;
+  const password = document.getElementById("create-password").value;
   document.getElementById("create-username").value = "";
   document.getElementById("create-name").value = "";
+  document.getElementById("create-password").value = "";
 
-  const data = { name: name, username: username };
+  const data = { name: name, username: username, password: password };
 
   fetch("./backend/create_user.php", {
     method: "POST",

@@ -27,11 +27,13 @@ function refresh() {
 function logIn() {
   const username = document.getElementById("login-username").value;
   document.getElementById("login-username").value = "";
-  logInUser(username);
+  const password = document.getElementById("login-password").value;
+  document.getElementById("login-password").value = "";
+  logInUser(username, password);
 }
 
-function logInUser(username) {
-  const data = { username: username };
+function logInUser(username, password) {
+  const data = { username: username, password: password };
 
   fetch("./backend/login.php", {
     method: "POST",
@@ -45,7 +47,8 @@ function logInUser(username) {
       if (data.success) {
         displayUser(data.user);
       } else {
-        alert("Username does not exist");
+        console.log(data);
+        alert("Username does not exist or password is incorrect");
       }
     })
     .catch((err) => console.error(err));

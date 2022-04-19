@@ -6,6 +6,8 @@
 
     $username_guess = $json_obj['username'];
     $username_guess = htmlentities($username_guess);
+    $password_guess = $json_obj['password'];
+    $password_guess = htmlentities($password_guess);
     require "./database.php";
 
     $stmt = $mysqli->prepare("SELECT * FROM players WHERE username = '$username_guess'");
@@ -18,7 +20,7 @@
     $result = $stmt->get_result();
     $result = $result->fetch_assoc();
 
-    if( $result["username"] == $username_guess ) {
+    if( $result["username"] == $username_guess && password_verify($password_guess, $result["password_hash"])) {
         ini_set("session.cookie_httponly", 1);
         session_start();
         $_SESSION['username'] = $username_guess;
@@ -32,7 +34,7 @@
     } else {
         echo json_encode(array(
             "success" => false,
-            "message" => "Username does not exist"
+            "message" => "Username does not exist or password is incorrect",
         ));
     }
 

@@ -97,8 +97,12 @@ body {
 }
 
 #login-username {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   padding-left: 3px;
+}
+
+#login-password {
+  margin-bottom: 5px;
 }
 
 .logged-in-container {
@@ -135,8 +139,12 @@ body {
 }
 
 #create-username {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   padding-left: 3px;
+}
+
+#create-password {
+  margin-bottom: 5px;
 }
 
 /* Rules and about styles */

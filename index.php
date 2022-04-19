@@ -29,6 +29,8 @@
                 <h2>Log In</h2>
                 <input type="text" id="login-username" placeholder="Username" required>
                 <br>
+                <input type="text" id="login-password" placeholder="Password" required>
+                <br>
                 <button type="submit" id="login-button" class="btn btn-primary">Log In</button>
                 <br>
                 <button type="submit" id="login-button-admin" class="btn btn-primary">Admin</button>
@@ -43,6 +45,8 @@
                 <input type="text" id="create-name" placeholder="Name" required>
                 <br>
                 <input type="text" id="create-username" placeholder="Username" required>
+                <br>
+                <input type="text" id="create-password" placeholder="Password" required>
                 <br>
                 <button type="submit" id="create-button" class="btn btn-primary">Submit</button>
             </div>
@@ -127,11 +131,11 @@
 
     <!-- Javascript imports -->
 
-    <script src="./backend/login.js"></script>
-    <script src="./backend/logout.js"></script>
-    <script src="./backend/create_user.js"></script>
-    <script src="./backend/join.js"></script>
-    <script src="./backend/admin.js"></script>
+    <script src="./login.js"></script>
+    <script src="./logout.js"></script>
+    <script src="./create_user.js"></script>
+    <script src="./join.js"></script>
+    <script src="./admin.js"></script>
 
     <!-- Event Listeners -->
     <script>   
