@@ -22,6 +22,15 @@ function logOut(e) {
               document.getElementById("list-of-games-list").firstChild
             );
         }
+        while (document.getElementById("active-users-list").firstChild) {
+          document
+            .getElementById("active-users-list")
+            .removeChild(
+              document.getElementById("active-users-list").firstChild
+            );
+        }
+        document.getElementById("acive-users").innerHTML =
+          "Join a game to see active players";
       }
     })
     .catch((err) => console.error(err));

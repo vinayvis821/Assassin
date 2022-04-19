@@ -75,6 +75,10 @@
                 <p id="logged-in-round">You have until: </p>
                 <button type="submit" id="logout-button" class="btn btn-primary">Log out</button>
             </div>
+            <div class="col-sm active-user-container">
+                <h2 id="acive-users">Join a game to see active players</h2>
+                <div id="active-users-list"></div>
+            </div>
         </div>
     </div>
 

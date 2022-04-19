@@ -96,14 +96,50 @@ function displayCurrentGame(user) {
         "You have been eliminated";
       document.getElementById("logged-in-round").innerHTML =
         "You are not allowed to eliminated anyone";
+      displayActiveUsers(user.current);
     }
   } else {
+    document.getElementById("acive-users").innerHTML =
+      "Join a game to see active players";
+    while (document.getElementById("active-users-list").firstChild) {
+      document
+        .getElementById("active-users-list")
+        .removeChild(document.getElementById("active-users-list").firstChild);
+    }
     document.getElementById("logged-in-username").innerHTML = "No current game";
     document.getElementById("logged-in-game").innerHTML = "";
     document.getElementById("logged-in-target").innerHTML =
       "Join a game to be assigned a target. You are only allowed to be on one game at a time.";
     document.getElementById("logged-in-round").innerHTML = "";
   }
+}
+
+function displayActiveUsers(gameName) {
+  document.getElementById("acive-users").innerHTML =
+    "Active players in: " + gameName;
+
+  const data = { name: gameName };
+
+  fetch("./backend/get_players.php", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "content-type": "application/json" },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      data = JSON.stringify(data);
+      data = JSON.parse(data);
+      while (document.getElementById("active-users-list").firstChild) {
+        document
+          .getElementById("active-users-list")
+          .removeChild(document.getElementById("active-users-list").firstChild);
+      }
+      for (let i = 0; i < data.users.length; i++) {
+        let p = document.createElement("p");
+        p.innerHTML = data.users[i].username + ": " + data.users[i].name;
+        document.getElementById("active-users-list").appendChild(p);
+      }
+    });
 }
 
 function displayUserInfo(user, targetName) {
@@ -114,6 +150,7 @@ function displayUserInfo(user, targetName) {
     "Your target is: " + targetName;
   document.getElementById("logged-in-round").innerHTML =
     "You have 3 days from the start of the round to eliminate your target, or you will be eliminated";
+  displayActiveUsers(user.current);
 }
 
 function displayActiveGames() {

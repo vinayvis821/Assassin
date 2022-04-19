@@ -52,6 +52,7 @@ function switchToGame(gameName, game_id, username) {
       document.getElementById("logged-in-round").innerHTML =
         "You have 3 days from the start of the round to eliminate your target, or you will be eliminated";
       displayActiveGames();
+      displayUserInfo(user, user.target);
       alert("You have joined game: " + gameName + ". Good luck!");
     })
     .catch((err) => console.error(err));

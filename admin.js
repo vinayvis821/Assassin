@@ -107,10 +107,13 @@ function clickAdminGame(event) {
 
       for (let i = 0; i < data.users.length; i++) {
         let user = document.createElement("p");
-        user.innerHTML = data.users[i].username;
+        user.innerHTML = data.users[i].username + ": " + data.users[i].name;
         user.setAttribute("id", data.users[i].username);
         user.addEventListener("click", clickAdminManageUser);
-        user.setAttribute("class", data.users[i].eliminated);
+        user.setAttribute(
+          "class",
+          data.users[i].eliminated == "yes" ? "strikethrough" : ""
+        );
         document
           .getElementById("manage-game-list-of-players")
           .appendChild(user);
@@ -150,10 +153,15 @@ function updateAdminGame(gameName) {
 
       for (let i = 0; i < data.users.length; i++) {
         let user = document.createElement("p");
-        user.innerHTML = data.users[i].username;
+        user.innerHTML = data.users[i].username + ": " + data.users[i].name;
+        console.log(user);
         user.setAttribute("id", data.users[i].username);
         user.addEventListener("click", clickAdminManageUser);
-        user.setAttribute("class", data.users[i].eliminated);
+        user.setAttribute(
+          "class",
+          data.users[i].eliminated == "yes" ? "strikethrough" : ""
+        );
+
         document
           .getElementById("manage-game-list-of-players")
           .appendChild(user);
@@ -163,7 +171,9 @@ function updateAdminGame(gameName) {
 }
 
 function clickAdminManageUser(event) {
-  let user = event.target.innerHTML;
+  let user = String(event.target.innerHTML);
+  let index = user.indexOf(":");
+  user = user.substring(0, index);
   document.getElementById("manage-user-container").style.display = "block";
   document.getElementById("manage-game-container").style.display = "none";
 
@@ -172,6 +182,7 @@ function clickAdminManageUser(event) {
   document.getElementById("manage-user-name").setAttribute("class", user);
 
   let eliminatedStatus = document.getElementById(user).getAttribute("class");
+  eliminatedStatus = eliminatedStatus == "strikethrough" ? "yes" : "no";
   document.getElementById("eliminated").innerHTML =
     "Eliminated: " + eliminatedStatus;
 }
@@ -200,6 +211,7 @@ function deleteUser() {
 function eliminateUser() {
   let user = document.getElementById("manage-user-name").getAttribute("class");
   let eliminatedStatus = document.getElementById(user).getAttribute("class");
+  eliminatedStatus = eliminatedStatus == "strikethrough" ? "yes" : "no";
 
   const data = { username: user, eliminated: eliminatedStatus };
 
@@ -216,8 +228,9 @@ function eliminateUser() {
       if (data.success) {
         document.getElementById("eliminated").innerHTML =
           "Eliminated: " + data.eliminated;
+        eliminatedStatus = data.eliminated == "yes" ? "strikethrough" : "";
       }
-      document.getElementById(user).setAttribute("class", data.eliminated);
+      document.getElementById(user).setAttribute("class", eliminatedStatus);
     })
     .catch((err) => console.error(err));
 }
@@ -240,6 +253,7 @@ function assignTargets() {
       if (data.success) {
         updatePlayerTargets(data.users);
       }
+      alert("Players have been randomnly assigned targets");
     })
     .catch((err) => console.error(err));
 }

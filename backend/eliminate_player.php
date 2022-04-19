@@ -20,6 +20,16 @@
             exit;
         }
         $eliminated = 'yes';
+        $stmt->execute();
+        $stmt->close();
+
+        $stmt = $mysqli->prepare("UPDATE players SET target_eliminated = 'yes' WHERE target = '$username'");
+        if(!$stmt){
+            printf("Query Prep Failed: %s\n", $mysqli->error);
+            exit;
+        }
+        $stmt->execute();
+        $stmt->close();
     } else {
         $stmt = $mysqli->prepare("UPDATE players SET eliminated = 'no' WHERE username = '$username'");
         if(!$stmt){
@@ -27,19 +37,19 @@
             exit;
         }
         $eliminated = 'no';
+        $stmt->execute();
+        $stmt->close();
+
+        $stmt = $mysqli->prepare("UPDATE players SET target_eliminated = 'no' WHERE target = '$username'");
+        if(!$stmt){
+            printf("Query Prep Failed: %s\n", $mysqli->error);
+            exit;
+        }
+        $stmt->execute();
+        $stmt->close();
     }
-    $stmt->execute();
-    $stmt->close();
 
     $stmt = $mysqli->prepare("UPDATE players SET target = 'None' WHERE username = '$username'");
-    if(!$stmt){
-        printf("Query Prep Failed: %s\n", $mysqli->error);
-        exit;
-    }
-    $stmt->execute();
-    $stmt->close();
-
-    $stmt = $mysqli->prepare("UPDATE players SET target_eliminated = 'yes' WHERE target = '$username'");
     if(!$stmt){
         printf("Query Prep Failed: %s\n", $mysqli->error);
         exit;
