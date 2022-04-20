@@ -9,13 +9,13 @@
 
 /* scroll lock on page */
 
-html,
+/* html,
 body {
   margin: 0;
   height: 100%;
   overflow: hidden;
   background-color: aliceblue;
-}
+} */
 
 /* header and nav bar styles */
 
@@ -328,4 +328,10 @@ body {
 
 #end-game-admin {
   margin-top: 5px;
+}
+
+input[type="text"] {
+  box-sizing: border-box;
+  max-width: fit-content;
+  width: inherit;
 }

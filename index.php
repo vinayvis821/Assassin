@@ -25,7 +25,7 @@
 
     <div class="container" id="log-in">
         <div class="row">
-            <div class="col-sm login-container">
+            <div class="col-md-12 login-container">
                 <h2>Log In</h2>
                 <input type="text" id="login-username" placeholder="Username" required>
                 <br>
@@ -40,7 +40,7 @@
 
     <div class="container" id="create-user-container">
         <div class="row">
-            <div class="col-sm create-user">
+            <div class="col-md-12 create-user">
                 <h2>Create User</h2>
                 <input type="text" id="create-name" placeholder="Name" required>
                 <br>
@@ -67,7 +67,7 @@
 
     <div class="container" id="logged-in">
         <div class="row">
-            <div class="col-sm logged-in-container">
+            <div class="col-sm-6 logged-in-container">
                 <h2 id="logged-in-username">Hi, </h2>
                 <p id="logged-in-game">Current game:</p>
                 <span id="logged-in-game_id"></span>
@@ -75,7 +75,7 @@
                 <p id="logged-in-round">You have until: </p>
                 <button type="submit" id="logout-button" class="btn btn-primary">Log out</button>
             </div>
-            <div class="col-sm active-user-container">
+            <div class="col-sm-6 active-user-container">
                 <h2 id="acive-users">Join a game to see active players</h2>
                 <div id="active-users-list"></div>
             </div>
