@@ -412,6 +412,15 @@ function endGame() {
     .then((data) => {
       data = JSON.stringify(data);
       data = JSON.parse(data);
+      while (
+        document.getElementById("manage-game-list-of-players").firstChild
+      ) {
+        document
+          .getElementById("manage-game-list-of-players")
+          .removeChild(
+            document.getElementById("manage-game-list-of-players").firstChild
+          );
+      }
       displayAdmin();
     })
     .catch((err) => console.error(err));
