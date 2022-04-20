@@ -23,7 +23,7 @@
         $stmt->execute();
         $stmt->close();
 
-        $stmt = $mysqli->prepare("UPDATE players SET target_eliminated = 'no' WHERE target = '$username'");
+        $stmt = $mysqli->prepare("UPDATE players SET target_eliminated = 'yes' WHERE target = '$username'");
         if(!$stmt){
             printf("Query Prep Failed: %s\n", $mysqli->error);
             exit;
