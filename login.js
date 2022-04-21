@@ -198,13 +198,13 @@ function displayUserInfo(user, targetName) {
   document.getElementById("logged-in-username").innerHTML = "Hi, " + user.name;
   document.getElementById("logged-in-game").innerHTML =
     "Current game: " + user.current;
-  if (user.target_eliminated == "yes") {
-    document.getElementById("logged-in-target").innerHTML =
-      "Your target has been eliminated, good job";
-  } else {
-    document.getElementById("logged-in-target").innerHTML =
-      "Your target is: " + targetName;
-  }
+  // if (user.target_eliminated == "yes") {
+  //   document.getElementById("logged-in-target").innerHTML =
+  //     "Your target has been eliminated, good job";
+  // } else {
+  document.getElementById("logged-in-target").innerHTML =
+    "Your target is: " + targetName;
+  // }
   document.getElementById("logged-in-round").innerHTML =
     "You have 3 days from the start of the round to eliminate your target, or you will be eliminated";
   displayActiveUsers(user.current);
